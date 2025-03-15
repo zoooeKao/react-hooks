@@ -1,13 +1,10 @@
-import { UseTheme } from '../custom-hook/ThemeProvider';
-
 interface CardProps {
   title: string;
   price: number;
+  theme: 'light' | 'dark';
 }
 
-export const Card = ({ title, price }: CardProps) => {
-  const { theme } = UseTheme();
-
+export const Card = ({ title, price, theme }: CardProps) => {
   return (
     <div
       className={`${

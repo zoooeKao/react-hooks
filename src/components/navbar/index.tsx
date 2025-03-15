@@ -1,7 +1,8 @@
-import { UseTheme } from '../custom-hook/ThemeProvider';
+interface NavbarProps {
+  toggleTheme: () => void;
+}
 
-export const Navbar = () => {
-  const { theme, toggleTheme } = UseTheme();
+export const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
   return (
     <>
       <div className="flex justify-end">

@@ -6,7 +6,11 @@ interface Product {
   price: number;
 }
 
-export const Carousel = () => {
+interface CarouselProps {
+  theme: 'light' | 'dark';
+}
+
+export const Carousel: React.FC<CarouselProps> = ({ theme }) => {
   const [allProduct, setAllProduct] = useState<Product[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const refDom = useRef<HTMLInputElement | null>(null);
@@ -67,7 +71,7 @@ export const Carousel = () => {
         >
           {allProduct.map(({ title, price }, index) => (
             <div key={index} className="w-full flex-shrink-0">
-              <Card title={title} price={price} />
+              <Card title={title} price={price} theme={theme} />
             </div>
           ))}
         </div>
