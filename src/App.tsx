@@ -1,4 +1,5 @@
 import { Carousel } from './components/carousel';
+import { Count } from './components/count';
 import { ThemeProvider } from './components/custom-hook/ThemeProvider';
 import { Navbar } from './components/navbar';
 
@@ -11,6 +12,7 @@ function App(): JSX.Element {
       <ThemeProvider>
         <Navbar />
         <Carousel />
+        <Count />
       </ThemeProvider>
     </div>
   );
