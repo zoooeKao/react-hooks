@@ -10,10 +10,8 @@ export const Carousel = () => {
   const [allProduct, setAllProduct] = useState<Product[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const refDom = useRef<HTMLInputElement | null>(null);
+  const refCount = useRef<Count | null>(null);
   const refValue = useRef(2);
-
-  refValue.current += 1;
-  console.log('refValue', refValue.current); //=>3
 
   const getAllProduct = async (): Promise<Product[]> => {
     try {
@@ -27,37 +25,37 @@ export const Carousel = () => {
     }
   };
 
-  // ref.current.value = 'test';
-
   useEffect(() => {
     getAllProduct().then((products) => {
       setAllProduct(products);
     });
-
-    if (refDom.current) refDom.current.value = 'test';
   }, []);
 
-  // 小心 infinite loop
-  useEffect(() => {
-    if (allProduct.length > 0) {
-      const intervalId = setInterval(() => {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % allProduct.length);
-      }, 1000);
+  // 1. []: 元件初次載入後執行
+  // 2. 每次都執行
+  // 3. [value1, value2] => Object.is
 
-      // cleanFn 執行時機
-      // 1. 元件 unmounted
-      // 2. 依賴項更動時會先執行上一次 effect 的 cleanFn [https://react.dev/learn/synchronizing-with-effects#fetching-data]
-      return () => {
-        clearInterval(intervalId);
-      };
-    }
-    // 依賴項
-    // 1. 不需要放 ref 和 useState 因為它們是穩定的 [https://react.dev/learn/synchronizing-with-effects#why-was-the-ref-omitted-from-the-dependency-array]
-    // 2. 放的通常是 props 和 state。
-  }, [allProduct]);
+  // 小心 infinite loop
+  // useEffect(() => {
+  //   if (allProduct.length > 0) {
+  //     const intervalId = setInterval(() => {
+  //       setActiveIndex((prevIndex) => (prevIndex + 1) % allProduct.length);
+  //     }, 1000);
+
+  //     // cleanFn 執行時機
+  //     // 1. 元件 unmounted
+  //     // 2. 依賴項更動時會先執行上一次 effect 的 cleanFn [https://react.dev/learn/synchronizing-with-effects#fetching-data]
+  //     return () => {
+  //       clearInterval(intervalId);
+  //     };
+  //   }
+  //   // 依賴項
+  //   // 1. 不需要放 ref 和 useState 因為它們是穩定的 [https://react.dev/learn/synchronizing-with-effects#why-was-the-ref-omitted-from-the-dependency-array]
+  //   // 2. 放的通常是 props 和 state。
+  // }, [allProduct]);
 
   return (
-    <>
+    <div>
       <div className="relative w-full overflow-hidden">
         <div
           className="flex transition-transform duration-1000"
@@ -73,8 +71,8 @@ export const Carousel = () => {
         </div>
       </div>
 
-      <div>useRef</div>
-      <input ref={refDom} type="text" className="bg-yellow-500 pl-3" />
-    </>
+      {/* <div>topic: useRef</div>
+      <input ref={refDom} type="text" className="bg-yellow-500 pl-3" /> */}
+    </div>
   );
 };

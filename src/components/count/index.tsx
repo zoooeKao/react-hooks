@@ -27,7 +27,7 @@ export const Count = () => {
   return (
     <>
       <div className="mt-10">
-        <div>topic: useReducer</div>
+        <h2 className="mt-8 pl-3 text-4xl">useReducer</h2>
         <div className="align-center flex justify-center">
           <button onClick={decrease} className="h-10 w-10 border border-black text-lg">
             -

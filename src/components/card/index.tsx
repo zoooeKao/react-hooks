@@ -1,4 +1,4 @@
-import { UseTheme } from '../custom-hook/ThemeProvider';
+import { useTheme } from '../custom-hook/ThemeProvider';
 
 interface CardProps {
   title: string;
@@ -6,7 +6,7 @@ interface CardProps {
 }
 
 export const Card = ({ title, price }: CardProps) => {
-  const { theme } = UseTheme();
+  const { theme } = useTheme();
 
   return (
     <div

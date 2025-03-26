@@ -12,7 +12,7 @@ interface ThemeProviderProps {
 }
 
 // Create context with a default value and proper typing
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -25,7 +25,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 };
 
 // Create a custom hook to use the theme context
-export const UseTheme = (): ThemeContextType => {
+export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
 
   if (context === undefined) {

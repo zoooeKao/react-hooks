@@ -1,7 +1,7 @@
-import { UseTheme } from '../custom-hook/ThemeProvider';
+import { useTheme } from '../custom-hook/ThemeProvider';
 
 export const Navbar = () => {
-  const { theme, toggleTheme } = UseTheme();
+  const { theme, toggleTheme } = useTheme();
   return (
     <>
       <div className="flex justify-end">
