@@ -3,6 +3,7 @@ import { Carousel } from './components/carousel';
 import { Child } from './components/child';
 import { Count } from './components/count';
 import { ThemeProvider } from './components/custom-hook/ThemeProvider';
+import { ExposeChildMethod } from './components/exposeChildMethod';
 import { Navbar } from './components/navbar';
 import { Test1 } from './components/test1';
 import { Test2 } from './components/test2';
@@ -33,6 +34,11 @@ function App(): JSX.Element {
         <Count />
         <Test1 />
         <Test2 />
+        <ExposeChildMethod
+          onTrigger={() => {
+            alert('Parent got triggered by child!');
+          }}
+        />
       </ThemeProvider>
     </div>
   );
